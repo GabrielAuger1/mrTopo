@@ -1,0 +1,32 @@
+COMPONENTS:
+
+						[DONE]
+	1. Barre de menus
+		a.Titre du site web
+		b.Liens vers la page de consultation des lieux
+		c.Lien vers incription
+		d.Lien permettant de se connecter ou de se déconnecter selon le cas
+		e.Lien permettant d'accéder au profil de l'utilisateur lorsqu'un utilisateur est connecté
+
+
+						[TODO]
+	
+	2. Page d'accueil : RECHERCHE
+
+		Formulaire de recherche permettant à l'utilisateur de rechercher une voie selon les critères suivants:
+			i. De 5.7 à 5.15d. De 5.8 à 5.9, l’intervalle augmente de 0.1 alors que de 5.10 à 15d l’intervalle commence par la lettre a jusqu’à d'avant
+				d’augmenter de 0.1 (Ex. 5.10a, 5.10b, 5.10c, 5.10d, 5.11a).
+			ii. Un type (trad, sport, top rope)
+			iii. Un lieu
+
+		Les résultats de la recherche sont affichés en ordre croissant de niveau de difficulté et de nom de la voie. Pour chaque voie, l’information suivante est affichée:
+			i. Nom de la voie (lien permettant de consulter les détails de la voie)
+			ii. Lieu (lien permettant de consulter les détails du lieu)
+			iii. Niveau de difficulté
+			iiii. Type
+
+		Détails d'un lieu
+			i. Nom
+			ii. Carte indiquant l’emplacement géographique du lieu selon sa latitude et sa longitude
+			iii. Description
+			iiii. S’y rendre (indique comment se rendre au lieu)

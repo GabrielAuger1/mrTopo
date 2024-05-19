@@ -16,25 +16,25 @@ const areaSchema = new Schema(
 			type: String,
 			required: true,
 		},
-        lon: {
+		lon: {
 			type: Number,
 			required: true,
-		},
-        lat: {
+			},
+		lat: {
 			type: Number,
 			required: true,
-		},
-        routes:[
-            {
-              type: Schema.Types.ObjectId,
-              ref: 'Route'
-            }
-          ],
-        user : {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
-        }
+			},
+		routes:[
+		    {
+		      type: Schema.Types.ObjectId,
+		      ref: 'Route'
+		    }
+		  ],
+		user : {
+		    type: Schema.Types.ObjectId,
+		    ref: 'User',
+		    required: true,
+		}
 	},
 	{ timestamps: true }
 );
