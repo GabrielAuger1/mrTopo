@@ -1,0 +1,1071 @@
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+
+Travail pratique #3
+Vue.js et API REST
+Objectif
+Le but de ce projet est de créer une application en utilisant une API en Express.js pour le backend et Vue.js pour le frontend.
+
+Contexte
+Vous devez réaliser un site web agissant en tant que guide pour des voies d’escalade à travers le monde qu’on nommera « DrTopo ». Ce site permettra à des
+passionnés d’escalade de consulter des lieux offrant la pratique de leur sport ainsi que les voies disponibles. L’application doit ainsi permettre à ses membres
+de créer et de gérer des lieux et des voies d’escalade. Les utilisateurs doivent être en mesure de rechercher voie selon différents critères, de consulter la
+liste des lieux ainsi que les détails d’un lieu et d’une voie. Les lieux devront être situés géographiquement.
+
+Modalités
+•
+
+Ce travail doit être fait individuellement
+
+•
+
+Cette partie du travail est sur 100 points et vaut pour 40% de la note finale.
+
+•
+
+Date de remise : Voir la date de remise sur MS Teams
+
+1
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Remise
+Vous devez remettre sur MS Team : Un fichier nommé "InfosGitLab.txt" contenant :
+•
+
+l'URL de votre dépôt GitLab. Assurez-vous de me donner accès à votre dépôt distant (mvezina@cegepgarneau.ca) et de ne pas mettre de date
+d’expiration.
+
+Votre dépôt doit contenir les éléments suivants :
+•
+
+Un fichier readme.md avec le lien vers la documentation de votre api
+
+•
+
+Le code le l'API (inclure le fichier .env avec les vraies informations)
+
+•
+
+Le code Vue.js (inclure le fichier .env avec les vraies informations)
+
+•
+
+Un export des requêtes Postman au format JSON pour les tests
+
+•
+
+Un export des variables de collections et d'environnement de Postman au format JSON
+
+•
+
+l'API doit être hébergée sur un serveur distant et accessible pendant deux semaines après la date de la remise
+
+2
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Fonctionnement de l'application
+L'utilisateur doit pouvoir s'inscrire sur le site en saisissant un nom d'utilisateur, courriel et mot de passe et la confirmation du mot de passe. Le mot de passe
+doit être crypté en utilisant la librairie bcrypt.
+L'utilisateur doit pouvoir se connecter en saisissant son nom d'utilisateur et mot de passe. Le jeton d'authentification doit être valide pour une période de
+24h. À tout moment, si le jeton est expiré ou que l'utilisateur n'est pas connecté et qu'il tente d'accéder à une page pour laquelle il doit l'être, alors celui-ci
+est redirigé vers la page de connexion. L'utilisateur doit également pouvoir se déconnecter du site.
+L’application permet aux visiteurs de rechercher des voies et des lieux selon certains critères. Il est possible pour les utilisateurs de créer, modifier et
+supprimer les lieux et les voies qu’ils ont créés.
+
+Barre de menu (accessible partout dans le site)
+•
+
+Titre du site web
+
+•
+
+Liens permettant d’accéder à la page de consultation des lieux
+
+•
+
+Lien permettant de s’inscrire
+
+•
+
+Lien permettant de se connecter ou de se déconnecter selon le cas
+
+•
+
+Lien permettant d’accéder au profil de l’utilisateur lorsqu’un utilisateur est connecté
+
+3
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Page d’accueil
+À l'arrivée sur la page d'accueil, l’utilisateur a accès à un formulaire de recherche lui permettant de rechercher une voie selon les critères suivants :
+•
+
+Intervalle de niveau de difficulté
+o
+
+De 5.7 à 5.15d. De 5.8 à 5.9, l’intervalle augmente de 0.1 alors que de 5.10 à 15d l’intervalle commence par la lettre a jusqu’à d avant
+d’augmenter de 0.1 (Ex. 5.10a, 5.10b, 5.10c, 5.10d, 5.11a).
+
+o
+
+Un type (trad, sport, top rope)
+
+o
+
+Un lieu
+
+Les résultats de la recherche sont affichés en ordre croissant de niveau de difficulté et de nom de la voie. Pour chaque voie, l’information suivante est
+affichée :
+o
+
+Nom de la voie (lien permettant de consulter les détails de la voie)
+
+o
+
+Lieu (lien permettant de consulter les détails du lieu)
+
+o
+
+Niveau de difficulté
+
+o
+
+Type
+
+Détails d’un lieu
+o
+
+Nom
+
+o
+
+Carte indiquant l’emplacement géographique du lieu selon sa latitude et sa longitude
+
+o
+
+Description
+
+o
+
+S’y rendre (indique comment se rendre au lieu)
+4
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+o
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Liste des voies regroupées par type et affichées en ordre croissant de niveau de difficulté et de nom. Pour chaque type l’information suivante est
+affichée :
+o
+
+Nom de la voie (lien permettant d’accéder aux détails)
+
+o
+
+Niveau de difficulté
+
+o
+
+Type
+
+Détails d’une voie
+Affiche les informations suivantes :
+o
+
+Nom
+
+o
+
+Niveau de difficulté
+
+o
+
+Lieu
+
+o
+
+Type
+
+o
+
+Partagée par quel utilisateur et à quelle date
+
+o
+
+Approche (information indiquant à l’utilisateur comment se rendre à la voie)
+
+o
+
+Description
+
+o
+
+Descente (indique comment redescendre de la voie)
+
+5
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Profil utilisateur
+Affiche les informations suivantes :
+o
+
+Nom d’utilisateur
+
+o
+
+Courriel
+
+o
+
+Listes de ses lieux :
+
+o
+
+o
+
+Nom du lieu (lien permettant d’afficher la liste des voies de ce lieu)
+
+o
+
+Lien permettant d’accéder au formulaire pour modifier le lieu
+
+o
+
+Lien permettant de supprimer ce lieu. Un lieu ne peut pas être supprimé s’il possède des voies.
+
+Liste des voies en ordre alphabétique
+o
+
+Nom de la voie (lien permettant d’afficher les détails de cette voie)
+
+o
+
+Lien permettant d’accéder au formulaire pour modifier la voie
+
+o
+
+Lien permettant de supprimer la voie
+
+o
+
+Lien permettant d’accéder au formulaire de création d’un lieu
+
+o
+
+Lien permettant d’accéder au formulaire de création d’une voie
+
+6
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+1. Backend (API)
+L'API doit être réalisée avec Express.js. Vous devez compléter le code fourni avec l'énoncé. Vous pouvez modifier le code existant, mais pas les routes.
+Vous pouvez, cependant, ajouter des middlewares dans les routes.
+Toutes les routes définies dans le dossier "routes" doivent être implémentées.
+L'utilisateur doit être authentifié pour effectuer les actions suivantes sur l'API :
+o
+
+Création d’un lieu, consultation, modification et suppression des lieux qui lui appartiennent
+
+o
+
+Création d’une voie, consultation, modification et suppression des voies qui lui appartiennent
+o
+
+Lors de la création et la modification d’une voie, le niveau de difficulté enregistré dans la bd est :
+▪
+
+5.8 = 5.08
+
+▪
+
+5.9 = 5.09
+
+▪
+
+De 5.10 à 5.154 l’intervalle augmente de 0.01 jusqu’à 0.04 pour ensuite augmente de 0.1 (Ex. 5.10, 5.101, 5.102, 5.103, 5.104, 5.11,
+etc.)
+
+o
+
+Consulter son profile
+
+L'authentification doit être gérée avec un jeton JWT.
+Vous devez vous assurer qu'un utilisateur ne peut pas effectuer des actions sur des lieux et les voies qui ne lui appartiennent pas.
+
+7
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Vous devez respecter les notions vues en classe :
+•
+
+Codes HTTP adéquats (200, 201,400,403,404,409, 422 …)
+
+•
+
+Gestion des erreurs
+
+•
+
+Utilisation de middleware (authentification, validation, etc.)
+
+2. Frontend
+▪
+
+Le frontend doit être développé en utilisant Vue.js. Vous devez respecter la maquette filaire.
+
+▪
+
+Les vues, les routes et les composants suivants doivent être inclus dans l'application :
+o
+
+Vues :
+▪
+
+IndexView : Affiche la page d’accueil avec le formulaire de recherche et les résultats
+
+▪
+
+AreasView : Affiche la liste des lieux
+
+▪
+
+AreaView : Affiche les détails d'un lieu
+
+▪
+
+AreaFormView : Affiche le formulaire pour la création ou la modification d’un lieu. S'il y a une erreur, le formulaire doit toujours être
+affiché avec les messages d'erreurs. Sinon, on redirige à la page de profil de l’utilisateur.
+
+▪
+
+RouteView : Affiche les détails d'une voie
+
+▪
+
+RouteFormView : Affiche le formulaire pour la création ou la modification d’une voie. S'il y a une erreur, le formulaire doit toujours
+être affiché avec les messages d'erreurs. Sinon, on redirige à la page de profil de l’utilisateur.
+
+8
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+▪
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+SignUpView : Affiche le formulaire de création d'un compte. S'il y a une erreur, le formulaire doit toujours être affiché avec les
+messages d'erreurs. Sinon, on redirige vers la page de connexion.
+
+▪
+
+SignIn : Affiche le formulaire de connexion. S'il y a une erreur, le formulaire doit toujours être affiché avec les messages d'erreurs.
+Sinon, on redirige à la page d'accueil.
+
+▪
+o
+
+o
+
+9
+
+ProfileView : Affiche le profil de l’utilisateur
+
+Composants :
+▪
+
+AreaList : Affiche la liste des lieux
+
+▪
+
+RouteList : Affiche la liste des voies
+
+Routes :
+▪
+
+/ : Affiche la vue IndexView
+
+▪
+
+/signin : Affiche la vue SignInView
+
+▪
+
+/signup : Affiche la vue SingUpView
+
+▪
+
+/profile : Affiche la vue ProfileView
+
+▪
+
+/areas/new : Affiche la vue AreaFormView
+
+▪
+
+/areas/ :id/edit : Affiche la vue AreaFormView
+
+▪
+
+/areas/ :id : Affiche la vue AreaView
+
+▪
+
+/areas : Affiche la vue AreasView
+
+▪
+
+/routes/new : Afficher la vue RouteFormView
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+•
+
+▪
+
+/routes/ :id/edit : Affiche la vue RouteFormView
+
+▪
+
+/routes/ :id : Affiche la vue RouteView
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Vous devez afficher une page 404 si un utilisateur authentifié tente d'accéder à une ressource qui n'existe pas et une page 403 si l'utilisateur
+authentifié tente d'accéder à une ressource qui ne lui appartient pas (profile, lieu, voie)
+
+•
+
+Vous devez respecter les bonnes pratiques vues en classe
+
+•
+
+La mise en page doit bien s’adapter à divers types d’appareils (responsive).
+
+•
+
+Toutes les pages produites dans le cadre de ce travail doivent s'afficher correctement avec les navigateurs modernes (Chrome et Firefox).
+
+3. Validation des données et rétroaction
+Vous devez effectuer la validation des données autant du côté frontend et backend.
+•
+
+Vous devez afficher une rétroaction lors de la création, modification et suppression
+
+•
+
+Les messages d'erreur doivent être proches des champs en erreur.
+
+•
+
+Voir les tableaux suivants pour les contraintes de validation des formulaires :
+
+10
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+3.1 Utilisateur
+Champs
+
+Contraintes
+
+Nom d’utilisateur
+
+Entre 3 et 50 caractères
+Requis
+
+Courriel
+
+Est un courriel
+N’est pas déjà utilisé
+Pas plus de 50 caractères
+Requis
+
+Mot de passe
+
+Doit contenir un minimum 6 caractères
+Requis
+
+Confirmation mot de passe
+
+Identique au mot de passe
+Requis
+
+3.2 Lieu
+Champs
+Nom
+
+Contraintes
+Au moins 1 caractère
+Requis
+
+Description
+
+Requis
+
+S’y rendre
+
+Requis
+
+Longitude
+
+Entre -180 et 180
+Requis
+
+Latitude
+
+Entre -90 et 90
+Requis
+
+11
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+
+3.3 Voie
+Champs
+Nom
+
+Contraintes
+Au moins 1 caractère
+Requis
+
+Type
+
+Sport, Trad ou Top rope
+Requis
+
+Difficulté
+
+Choix entre 5.8 et 5.15d
+Requis
+
+Lieu
+
+Choix
+Requis
+
+Description
+
+Requis
+
+Approche
+
+Optionnel
+
+Descente
+
+Optionnel
+
+12
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Tests
+Vous devez réaliser un jeu de tests automatisés avec Postman pour tester tous les cas qui concernent l'authentification et les voies (toutes les routes qui
+sont dans les fichiers routes/auth.js et routes/routes.js).
+La collection de tests doit pouvoir être exécutée de manière séquentielle comme pour le TP2. Les requêtes doivent être dynamiques et utiliser des variables
+de collection et d'environnement.
+La base de données doit être dans le même état après l'exécution des tests. Vous devez ajouter une route à l'API permettant de supprimer les données et
+ajouter vos données de tests. Ainsi, vous devez ajouter cette route à vos requêtes Postman afin qu'elle puisse être exécutée au début de l'exécution de vos
+tests.
+Vos jeux d'enregistrement doivent avoir au minimum :
+•
+
+Deux utilisateurs
+o
+
+User1 (user1@gmail.com)
+
+o
+
+User2 (user2@gmail.com)
+
+•
+
+Tous les mots de passe des utilisateurs doivent être 123qwe.
+
+•
+
+Chaque utilisateur doit avoir créé au moins deux lieux et au moins 5 voies par lieu ayant au moins une voie de chaque type.
+
+HATEOAS
+Le principe HATEOAS doit être implémenté pour toutes les routes qui concernent les voies.
+
+13
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Documentation
+Vous devez réaliser la documentation de l'API avec Postman
+Hébergement.
+L'API doit être hébergée sur un serveur distant.
+
+Caractéristiques générales du code
+•
+
+Le code de l'api doit se trouver dans le dossier "api" et le code de l'application vue.js doit se trouver dans le dossier "public".
+
+•
+
+Respectez les règles de base de la programmation vues en classe.
+o
+
+Structure du code
+
+o
+
+Présentation du code, indentation, saut de ligne.
+
+o
+
+Nommage des fonctions et variables de manière intelligible et raisonnée.
+
+•
+
+Porter une attention particulière à la qualité du code. Le code doit être le plus simple possible.
+
+•
+
+Porter une attention à la qualité de l'interface.
+
+14
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+
+Précisions sur l'évaluation
+Voici une ébauche du barème de correction. Il pourrait être modifié lors de la correction.
+Éléments
+
+Critères de performance
+
+Savoir-faire
+
+Points
+
+00SU Effectuer le développement d’applications Web transactionnelles
+1. Analyser le projet de
+
+1.1 Analyse juste des documents de conception.
+
+développement de l’application.
+
+Respect des exigences du document de conception
+
+1.2 Détermination correcte des tâches à effectuer.
+
+2. Préparer l’environnement de
+développement informatique.
+
+2.1 Installation correcte de la plateforme de développement et du
+
+Respect de l'architecture de l'application pour
+
+2.2 Installation correcte des logiciels et des bibliothèques.
+
+Installation des packages appropriés.
+
+2.3 Configuration appropriée du système de gestion de versions.
+
+Configurer le gestionnaire de versions (local et distant).
+
+2.4 Importation correcte du code source.
+
+Créer un clone d’un dépôt distant.
+
+système de gestion de base de données de développement.
+
+l'application l'api et l'application vue.js
+
+15
+
+Qualité et fréquences des commits
+3. Préparer la base de données.
+
+3.1 Création ou adaptation correctes de la base de données.
+3.2 Insertion correcte des données initiales ou des données de
+tests.
+
+3.3 Respect du modèle de données.
+4. Programmer la logique
+applicative du service.
+
+Cégep Garneau
+
+données avec des données de tests.
+
+Respect des jeux de données demandés.
+
+4.3 Choix approprié des clauses, des opérateurs, des commandes
+
+Respect du format de donnée JSON
+
+ou des paramètres dans les requêtes à la base de données.
+
+4.5 Programmation correcte de l’envoi des données de sortie
+
+Professeur : Martin Vézina
+
+Création de la route pour l'initialisation de la base de
+
+Programmer l’extraction (lecture et désérialisation) des
+
+4.4 Manipulation correcte des données de la base de données.
+
+15
+
+données MongoDb.
+
+4.2 Programmation correcte de la réception des données
+d’entrée.
+1.
+
+Respect des modèles de données pour la base de
+
+données d’entrée.
+
+20
+
+Choix et qualité des requêtes
+Programmer les traitements appropriés sur les données
+récupérées
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+2.
+
+4.6 Application rigoureuse des techniques de programmation
+
+Déterminer le code de statut et les en-têtes selon les
+
+4.7 Respect des protocoles de communication et des formats
+
+Déterminer les formats des données de sortie
+
+sécurisée.
+
+résultats de l’opération
+
+d’échange de données.
+
+Transformer les résultats selon les formats de données
+déterminés
+3.
+
+Valider les
+
+données
+
+4.
+
+Gestion des erreurs
+
+5.
+
+Gestion de l'authentification (JWT)
+
+6.
+
+Validation des données
+
+désérialisation
+
+d’entrée
+
+au
+
+moment
+
+de
+
+la
+
+Respect de l'architecture REST
+Concevoir l’interface du service d’échange de données
+•
+•
+•
+•
+•
+•
+7.
+
+Ressources
+URI
+
+méthodes,
+
+formats de données
+en-tête HTTP
+etc.
+
+Associer une méthode à l’opération à effectuer sur la
+ressource
+
+HATEAOS
+5. Programmer une application de
+test utilisant le service.
+
+5.1 Récupération exacte de l’interface du service.
+5.2 Utilisation appropriée du service.
+5.3 Conversion appropriée des données fournies par le service en
+
+Tests Postman
+15
+
+données exploitables par l’application de test.
+
+16
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+
+Travail pratique
+6. Contrôler la qualité du service.
+
+6.1 Application rigoureuse des plans de tests.
+
+Créer les requêtes HTTP appropriées afin d’interroger le
+service Web et vérifier les réponses (code HTTP, format,
+quantité, ordre, etc.)
+Désérialiser les données fournies par le service Web et
+vérifier le bon format.
+8.
+
+Effectuer des tests fonctionnels automatisés selon les
+spécifications.
+
+7. Participer au déploiement du
+service.
+
+7.1 Application correcte de la procédure de migration du service
+sur le serveur.
+
+7.2 Application rigoureuse des mesures de sécurité.
+
+Respecter la procédure de l’hébergeur Web pour la
+migration du service sur le serveur.
+Charger la base de données chez l’hébergeur.
+Configuration du service en mode Production vs
+Développement
+Configurer les mots de passe et les accès à la base de
+données et à l’hébergement Web.
+
+8. Rédiger la documentation.
+
+8.1 Détermination correcte de l’information à rédiger.
+
+Concevoir la documentation en respectant les normes
+
+00SU Effectuer le développement d’applications Web transactionnelles
+6. Programmer la logique
+
+applicative du côté client.
+
+6.1 Manipulation adéquate des objets du modèle DOM.
+6.2 Programmation appropriée d’appels asynchrones.
+6.3 Programmation correcte des interactions entre l’interface
+Web et l’utilisatrice ou l’utilisateur.
+
+6.4 Utilisation systématique des techniques de validation de
+données des formulaires Web.
+
+Utiliser le Framework MVC côté client Vue.js
+Manipuler les objets du DOM avec Vue.js
+Programmer des appels asynchrones et récupérer les
+résultats.
+
+40
+
+Adapter les interfaces graphiques en fonction des
+résultats des appels asynchrones.
+
+17
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+Travail pratique
+
+420-15D-FX APPLICATION WEB ET SÉCURITÉ
+Mettre à profit la liaison des données bidirectionnelles.
+Utiliser les particularités de Vue.js pour valider les
+formulaires.
+
+Caractéristiques générales
+•
+•
+•
+•
+
+Qualité du code
+
+Documentation du code
+
+10
+
+Respect des principes enseigné dans le cours
+Qualité des interfaces
+
+Pénalités
+•
+•
+•
+•
+
+18
+
+Retard.
+
+Remise incorrecte du travail.
+Français dans les interfaces
+
+D’autres éléments selon le besoin.
+
+Professeur : Martin Vézina
+Cégep Garneau
+
+420-14B-FX PROGRAMMATION ORIENTÉE OBJET
+
+H2024
+
+
