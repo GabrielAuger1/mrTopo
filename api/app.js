@@ -1,9 +1,10 @@
 "use strict";
 
-require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 var hateoasLinker = require("express-hateoas-links");
+
+require('dotenv').config();
 
 const app = express();
 
@@ -35,12 +36,14 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const areaRoutes = require("./routes/area");
 const routeRoutes = require("./routes/route");
+const searchRoutes = require("./routes/search");
 
 // Utilisation des routes en tant que middleware
 app.use(authRoutes);
 app.use(userRoutes);
 app.use(areaRoutes);
 app.use(routeRoutes);
+app.use(searchRoutes);
 
 // Gestion des erreurs
 // "Attrappe" les erreurs envoyé par "throw"
