@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Bienvenue sur DrTopo</h1>
-    <!-- Ajoutez plus de contenu ici -->
+    <h1>Bienvenue sur MrTopo</h1>
+    <p>Ceci est la page d'accueil.</p>
   </div>
 </template>
 
@@ -12,6 +12,6 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez des styles ici */
+/* Add styles here */
 </style>
 

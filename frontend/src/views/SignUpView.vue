@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Inscription</h1>
-    <p>Créez un compte pour accéder à toutes les fonctionnalités de DrTopo</p>
+    <p>Créez un compte pour accéder à toutes les fonctionnalités de MrTopo</p>
   </div>
 </template>
 	
