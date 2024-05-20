@@ -8,7 +8,6 @@ import RouteFormView from '../views/RouteFormView.vue';
 import SignUpView from '../views/SignUpView.vue';
 import SignInView from '../views/SignInView.vue';
 import ProfileView from '../views/ProfileView.vue';
-import SearchForm from '../components/SearchForm.vue';
 
 const routes = [
   { path: '/', name: 'Index', component: IndexView },
@@ -22,7 +21,6 @@ const routes = [
   { path: '/signup', name: 'SignUp', component: SignUpView },
   { path: '/signin', name: 'SignIn', component: SignInView },
   { path: '/profile', name: 'Profile', component: ProfileView },
-  { path: '/search', name: 'Search', component: SearchForm },
 ];
 
 const router = createRouter({
@@ -31,4 +29,3 @@ const router = createRouter({
 });
 
 export default router;
-

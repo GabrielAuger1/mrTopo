@@ -1,68 +1,39 @@
-"use strict";
-
 const express = require("express");
 const mongoose = require("mongoose");
-var hateoasLinker = require("express-hateoas-links");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
-require('dotenv').config();
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-// parse application/json
-app.use(express.json());  
+mongoose.connect(process.env.DATA_BASE, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
-// remplace le res.json standard avec la nouvelle version
-// qui prend en charge les liens HATEOAS
-app.use(hateoasLinker); 
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-    );
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    
-    if (req.method === "OPTIONS") {
-        res.status(200).end();
-        return;
-    } else {
-        next();
-    }
-});
-
-// Importe les routes
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const areaRoutes = require("./routes/area");
 const routeRoutes = require("./routes/route");
 const searchRoutes = require("./routes/search");
 
-// Utilisation des routes en tant que middleware
-app.use(authRoutes);
-app.use(userRoutes);
-app.use(areaRoutes);
-app.use(routeRoutes);
-app.use(searchRoutes);
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
 
-// Gestion des erreurs
-// "Attrappe" les erreurs envoyé par "throw"
-app.use(function (err, req, res, next) {
-    console.log("err", err);
-    if (!err.statusCode) {
-        err.statusCode = 500;
-    }
-    res.status(err.statusCode).json({ message: err.message, statusCode: err.statusCode });
-});    
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes); // Ensure this line is present
+app.use("/api/areas", areaRoutes);
+app.use("/api/routes", routeRoutes);
+app.use("/api", searchRoutes); 
 
-mongoose
-    .connect(process.env.DATA_BASE)
-    .then(() => {
-        app.listen(process.env.PORT || 3000, () => {
-            console.log("Node.js est à l'écoute sur http://localhost:%s ", process.env.PORT || 3000);
-        });
-    })
-    .catch(err => console.log(err));
-
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
